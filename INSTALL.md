@@ -39,3 +39,25 @@ Create a github action
 To create the access token select ```<Developer settings>``` in GitHub settings.
 
 Copy the token and use as DOCKER_REGISTRY_SERVER_PASSWORD in the Azure Web App settings.
+
+The current version of this action is
+
+1. Slightly broken.  Add ```package: write``` permission like this -
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+```
+
+2. Using out of date library calls
+
+```sh
+Node.js 12 actions are deprecated. For more information see: https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/. Please update the following actions to use Node.js 16: docker/setup-buildx-action, docker/login-action, docker/build-push-action, docker/build-push-action, docker/login-action, docker/setup-buildx-action
+```
+
+<https://github.com/Azure/actions-workflow-samples/blob/master/AppService/docker-webapp-container-on-azure.yml>
+
+<https://github.com/marketplace/actions/docker-setup-buildx>
