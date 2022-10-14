@@ -22,6 +22,8 @@ Containers are an alternative mechanism for distributing software applications. 
 
 ### Building a container image
 
+The composition of our container is described in a ```Dockerfile```.  This file tells the Docker *build* program what the base image will be, typically a version of Linux with a minimal set of tools for the programming language used for the application to be run, and also describes how to install your program with all necessary libraries.
+
 ### Running a container
 
 Containers can be run anywhere there is a suitable hosting environment. On your development machine this is most likely the Docker Engine program, but on Azure this will be the Azure App Service or the Azure Kubernetes Services.
@@ -29,6 +31,8 @@ Containers can be run anywhere there is a suitable hosting environment. On your 
 ## Development environments
 
 ### GitHub
+
+<https://docs.github.com/repositories/releasing-projects-on-github/managing-releases-in-a-repository?tool=webui>
 
 ### Docker Hub
 
