@@ -28,15 +28,14 @@ The composition of our container is described in a ```Dockerfile```.  This file 
 
 Containers can be run anywhere there is a suitable hosting environment. On your development machine this is most likely the Docker Engine program, but on Azure this will be the Azure App Service or the Azure Kubernetes Services.
 
-## Development environments
+## Development environment
 
 ### GitHub
 
+GitHub provides cloud services for building and deploying software in addition to version control.  This demo makes use of GitHub Actions to automate the building and deployment of a Docker container.
+
 <https://docs.github.com/repositories/releasing-projects-on-github/managing-releases-in-a-repository?tool=webui>
 
-### Docker Hub
-
-Docker Hub is a container *registry*, a website where container images are shared with other software developers.
 
 ### Visual Studio Code
 

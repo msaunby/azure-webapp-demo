@@ -1,21 +1,20 @@
 import base64
 import datetime
 import io
-from multiprocessing.sharedctypes import Value
-
 import dash
 from dash.dependencies import Input, Output, State
 from dash import dcc, html, dash_table
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
+import logging
 
-#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+FORMAT = '%(levelname)s:%(asctime)s:%(message)s' # See https://docs.python.org/3/library/logging.html#logrecord-attributes
+logging.basicConfig(level=logging.DEBUG, format=FORMAT)
 
 external_stylesheets=[dbc.themes.BOOTSTRAP]
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)  
-#,suppress_callback_exceptions=True)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)  
 
 app.layout = html.Div([
     dcc.Upload(
@@ -64,7 +63,7 @@ def parse_contents(contents, filename, date):
     return html.Div([    
         html.H5(datetime.datetime.fromtimestamp(date)),
         dbc.Button(
-            children="Show table", id="button-to-show_or_hide-table", className="me-2", value="show"),
+            children="Show/hide table", id="button-to-show_or_hide-table", className="me-2", value="show"),
         html.Div([
         html.H6(filename),
         dash_table.DataTable(
@@ -92,25 +91,18 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
             zip(list_of_contents, list_of_names, list_of_dates)] 
         return children
 
-#@app.callback(Output(component_id='element-to-hide', component_property='style'),
-#                [Input(component_id='dropdown-to-show_or_hide-element', component_property='value')])
-#def show_hide_element(visibility_state):
-#    if visibility_state == 'on':
-#        return {'display': 'block'}
-#    if visibility_state == 'off':
-#        return {'display': 'none'}
 
 @app.callback(Output(component_id='table-to-hide', component_property='style'),
                 Output("button-to-show_or_hide-table", "children"),
-                Output("button-to-show_or_hide-table", "value"),
-                Input("button-to-show_or_hide-table", "value"))
-def on_button_click(value):
-    print(f"callback {value}")
-    if value == 'show':
-        return ({'display': 'block'}, 'Hide table', 'hide')
+                Input("button-to-show_or_hide-table", "n_clicks"),
+                Input(component_id='table-to-hide', component_property='style'))
+def on_button_click(n, v):
+    logging.debug(f"callback - table style is {v}") # If you must use print, then - print(f"callback {n}", file=sys.stderr)
+    if v == {'display': 'block'}:
+        return ({'display': 'none'},'show table')
     else:
-        return ({'display': 'none'}, 'Show table', 'show')
+        return ({'display': 'block'},'hide table')
 
 if __name__ == '__main__':
-    app.run_server(debug=False,host='0.0.0.0',port=80)
+    app.run_server(debug=True,host='0.0.0.0',port=8080)
 
