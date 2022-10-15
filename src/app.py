@@ -1,6 +1,7 @@
 import base64
 import datetime
 import io
+from unittest.mock import Base
 import dash
 from dash.dependencies import Input, Output, State
 from dash import dcc, html, dash_table
@@ -104,4 +105,7 @@ def on_button_click(n, v):
         return ({'display': 'block'},'hide table')
 
 if __name__ == '__main__':
-    app.run_server(debug=True,host='0.0.0.0',port=80)
+    try:
+        app.run_server(debug=True,host='0.0.0.0',port=80)
+    except SystemExit:
+        app.run_server(debug=True,host='0.0.0.0',port=8080)
