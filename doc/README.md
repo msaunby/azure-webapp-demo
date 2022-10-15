@@ -10,3 +10,8 @@ The diagrams used to show how the software is built and deployed were created us
 
 Note that PlantUML generates diagrams from text descriptions, you don't draw the diagrams.  If you prefer to draw diagrams, these can be done by hand, using a generic drawing package, or with specialized software such as Visual Paradigm.
 
+## Alternatives
+
+### Docker Hub
+
+Docker Hub is a container *registry*, a website where container images are shared with other software developers.
