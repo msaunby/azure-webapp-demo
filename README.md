@@ -16,7 +16,7 @@ Any non-trivial Python application will have dependencies, typically imported mo
 
 ## Containers
 
-Containers are an alternative mechanism for distributing software applications.  Rather than distribute the program code and configuration files we distribute an executable *image*.
+Containers are useful tool for distributing software applications.  Rather than distribute the program code and configuration files we distribute an executable *image*.
 
 <https://www.docker.com/resources/what-container/>
 
