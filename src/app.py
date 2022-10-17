@@ -104,7 +104,7 @@ def on_button_click(n, v):
     else:
         return ({'display': 'block'},'hide table')
 
-IF __name__ == '__main__':
+if __name__ == '__main__':
     try:
         app.run_server(debug=True,host='0.0.0.0',port=80)
     except SystemExit:
